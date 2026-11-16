@@ -14,14 +14,15 @@ constexpr bool busTypeHasRGB(uint8_t type) {
 constexpr bool busTypeHasWhite(uint8_t type) {
   return  (type >= TYPE_WS2812_1CH_X3 && type <= TYPE_WS2812_WWA) ||
           type == TYPE_SK6812_RGBW || type == TYPE_TM1814 || type == TYPE_TM1815 || type == TYPE_UCS8904 ||
-          type == TYPE_FW1906 || type == TYPE_WS2805 || type == TYPE_SM16825 ||        // digital types with white channel
+          type == TYPE_FW1906 || type == TYPE_WS2805 || type == TYPE_SM16825 || type == TYPE_SM16703_DUAL || // digital types with white channel
           (type > TYPE_ONOFF && type <= TYPE_ANALOG_5CH && type != TYPE_ANALOG_3CH) || // analog types with white channel
           type == TYPE_NET_DDP_RGBW || type == TYPE_NET_ARTNET_RGBW;                   // network types with white channel
 }
 constexpr bool busTypeHasCCT(uint8_t type) {
   return  type == TYPE_WS2812_WWA    || type == TYPE_SM16825 ||
           type == TYPE_ANALOG_2CH    || type == TYPE_ANALOG_5CH ||
-          type == TYPE_FW1906        || type == TYPE_WS2805;
+          type == TYPE_FW1906        || type == TYPE_WS2805 ||
+          type == TYPE_SM16703_DUAL;
 }
 constexpr bool busTypeIsValid(uint8_t type)     { return (type >= TYPE_DIGITAL_MIN && type < 128); }
 constexpr bool busTypeIs2Pin(uint8_t type)      { return (type >= TYPE_2PIN_MIN && type <= TYPE_2PIN_MAX); }

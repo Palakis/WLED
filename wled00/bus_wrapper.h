@@ -49,6 +49,7 @@ inline const LegacyLayout& getLegacyChannelLayout(uint8_t busType) {
   static const LegacyLayout wrgb    = {4, {LF_W, LF_R, LF_G,  LF_B,   LF_PAD, LF_PAD}}; // TM1814/TM1815 (NeoWrgbTm1814Feature)
   static const LegacyLayout grbcwx  = {6, {LF_G, LF_R, LF_B,  LF_CW,  LF_W,   LF_PAD}}; // FW1906 (NeoGrbcwxFeature, 6th byte unused)
   static const LegacyLayout rgbcww  = {5, {LF_R, LF_G, LF_B,  LF_CW,  LF_W,   LF_PAD}}; // SM16825 (NeoRgbcwSm16825eFeature, 16-bit)
+  static const LegacyLayout grbxcww = {6, {LF_G, LF_R, LF_B,  LF_PAD, LF_CW,  LF_W  }}; // Dual SM16703: IC1 = RGB, IC2 = unused + CW + WW
   static const LegacyLayout rbg     = {3, {LF_R, LF_B, LF_G,  LF_PAD, LF_PAD, LF_PAD}}; // WS2801 (NeoRbgFeature)
   static const LegacyLayout bgr     = {3, {LF_B, LF_G, LF_R,  LF_PAD, LF_PAD, LF_PAD}}; // APA102 (DotStarBgrFeature), P9813 (P9813BgrFeature)
   switch (busType) {
@@ -60,6 +61,7 @@ inline const LegacyLayout& getLegacyChannelLayout(uint8_t busType) {
     case TYPE_FW1906:                 return grbcwx;
     case TYPE_WS2805:                 return grbwwcw;
     case TYPE_SM16825:                return rgbcww;
+    case TYPE_SM16703_DUAL:           return grbxcww;
     case TYPE_WS2801:                 return rbg;
     case TYPE_APA102: // fallthrough
     case TYPE_P9813:                  return bgr;

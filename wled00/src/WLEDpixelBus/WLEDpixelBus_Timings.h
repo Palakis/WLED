@@ -46,7 +46,7 @@ static const PROGMEM LedTiming _ledTimings[] = {
  { 300,  900,  700,  500,  200 },  // SK6812 / SK6812 RGBW
  { 400,  850,  800,  450,  300 },  // FW1906 GRBCW
  { 300,  790,  790,  300,  300 },  // WS2805 RGBCW
- { 300,  900,  900,  300,  250 },  // SM16825 (16-bit)
+ { 300,  900,  900,  300,  250 },  // SM16825 (16-bit) / SM16703
 };
 
 static inline uint8_t getTimingIndex(uint8_t wledType) {
@@ -66,7 +66,8 @@ static inline uint8_t getTimingIndex(uint8_t wledType) {
     case TYPE_SK6812_RGBW:   return  7;
     case TYPE_FW1906:        return  8;
     case TYPE_WS2805:        return  9;
-    case TYPE_SM16825:       return 10;
+    case TYPE_SM16825:
+    case TYPE_SM16703_DUAL:  return 10; // identical timing
     default:                 return  0; // WS281x fallback: SPI buses ignore LED bit timing; use WS281x as metadata stub
   }
 }
